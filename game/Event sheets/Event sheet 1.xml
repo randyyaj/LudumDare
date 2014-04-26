@@ -2,5 +2,151 @@
 <c2eventsheet>
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Event sheet 1</name>
-    <events />
+    <events>
+        <event-block sid="1684940381542083">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="5575056334302823" type="Punch">
+                    <param id="0" name="Object">Enemy</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-12" name="Subtract from" sid="1756618529013671" type="Enemy">
+                    <param id="0" name="Instance variable">Health</param>
+                    <param id="1" name="Value">Player.Attack</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="2292877604393155">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="1842314105668667" type="Bullet">
+                    <param id="0" name="Object">Enemy</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-12" name="Subtract from" sid="1930993828033698" type="Enemy">
+                    <param id="0" name="Instance variable">Health</param>
+                    <param id="1" name="Value">Player.Attack</param>
+                </action>
+                <action id="-9" name="Destroy" sid="5968235876723344" type="Bullet" />
+            </actions>
+        </event-block>
+        <event-block sid="6989094952751765">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="1257884201144813" type="Hadouken">
+                    <param id="0" name="Object">Enemy</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-12" name="Subtract from" sid="9664850293304641" type="Enemy">
+                    <param id="0" name="Instance variable">Health</param>
+                    <param id="1" name="Value">Player.Attack</param>
+                </action>
+                <action id="-9" name="Destroy" sid="8048817227722636" type="Hadouken" />
+            </actions>
+        </event-block>
+        <event-block sid="897970444130278">
+            <conditions>
+                <condition id="2" name="Key is down" sid="327805800113246" type="Keyboard">
+                    <param id="0" name="Key">32 (Space)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="9562671473938451" type="Player">
+                    <param id="0" name="Object">Bullet</param>
+                    <param id="1" name="Layer">4</param>
+                    <param id="2" name="Image point">1</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="8253954164397089" type="Player">
+                    <param id="0" name="Object">Pew</param>
+                    <param id="1" name="Layer">4</param>
+                    <param id="2" name="Image point">4</param>
+                </action>
+                <action id="0" name="Play" sid="8843466078423776" type="Audio">
+                    <param id="0" name="Audio file">Laser_Shoot3</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="6460977189557661">
+            <conditions>
+                <condition id="2" name="Key is down" sid="3920499716889569" type="Keyboard">
+                    <param id="0" name="Key">66 (B)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="4790807141189935" type="Player">
+                    <param id="0" name="Object">Punch</param>
+                    <param id="1" name="Layer">5</param>
+                    <param id="2" name="Image point">2</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="793227885785395">
+            <conditions>
+                <condition id="2" name="Key is down" sid="2995107612397901" type="Keyboard">
+                    <param id="0" name="Key">86 (V)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="4356574178793979" type="Player">
+                    <param id="0" name="Object">Hadouken</param>
+                    <param id="1" name="Layer">6</param>
+                    <param id="2" name="Image point">3</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="9947427717528916" type="Player">
+                    <param id="0" name="Object">HadoukenTXT</param>
+                    <param id="1" name="Layer">7</param>
+                    <param id="2" name="Image point">4</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="5681258324590738">
+            <conditions>
+                <condition id="-7" name="Compare instance variable" sid="9164990410807552" type="Enemy">
+                    <param id="0" name="Instance variable">Health</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="678651199538756" type="Enemy" />
+            </actions>
+        </event-block>
+        <event-block sid="9641608433758371">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="8286703280466202" type="System" />
+            </conditions>
+            <actions>
+                <action behavior="Sine" id="3" name="Set movement" sid="5125056773533891" type="Platform">
+                    <param id="0" name="Movement">0</param>
+                </action>
+                <action behavior="Sine" id="4" name="Set wave" sid="783399742496738" type="MovingWall">
+                    <param id="0" name="Wave">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="525655164510548">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="4987750593132962" type="System">
+                    <param id="0" name="Interval (seconds)">0.1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Pathfinding" id="0" name="Find path" sid="5573833671330732" type="Enemy">
+                    <param id="0" name="X">Player.X</param>
+                    <param id="1" name="Y">Player.Y</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="1623513851760336">
+            <conditions>
+                <condition behavior="Pathfinding" id="0" name="On path found" sid="5162359114387642" type="Enemy" />
+            </conditions>
+            <actions>
+                <action behavior="Pathfinding" id="1" name="Move along path" sid="1181927377089055" type="Enemy" />
+            </actions>
+        </event-block>
+    </events>
 </c2eventsheet>
