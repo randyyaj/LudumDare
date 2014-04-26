@@ -3,6 +3,7 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Event sheet 1</name>
     <events>
+        <variable constant="0" name="attack" sid="9569476695375282" static="0" type="number">0</variable>
         <event-block sid="1684940381542083">
             <conditions>
                 <condition id="0" name="On collision with another object" sid="5575056334302823" type="Punch">
@@ -14,6 +15,7 @@
                     <param id="0" name="Instance variable">Health</param>
                     <param id="1" name="Value">Player.Attack</param>
                 </action>
+                <action id="-9" name="Destroy" sid="7954267976099717" type="Punches" />
             </actions>
         </event-block>
         <event-block sid="2292877604393155">
@@ -67,6 +69,9 @@
                     <param id="3" name="Volume">0</param>
                     <param id="1" name="Tag (optional)">&quot;&quot;</param>
                 </action>
+                <action id="-16" name="Wait" sid="7503517105268808" type="System">
+                    <param id="0" name="Seconds">1.0</param>
+                </action>
             </actions>
         </event-block>
         <event-block sid="6460977189557661">
@@ -80,6 +85,14 @@
                     <param id="0" name="Object">Punch</param>
                     <param id="1" name="Layer">5</param>
                     <param id="2" name="Image point">2</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="8824342957485237" type="Player">
+                    <param id="0" name="Object">Punches</param>
+                    <param id="1" name="Layer">5</param>
+                    <param id="2" name="Image point">4</param>
+                </action>
+                <action id="-16" name="Wait" sid="1647585908290052" type="System">
+                    <param id="0" name="Seconds">1.0</param>
                 </action>
             </actions>
         </event-block>
@@ -100,6 +113,9 @@
                     <param id="1" name="Layer">7</param>
                     <param id="2" name="Image point">4</param>
                 </action>
+                <action id="-16" name="Wait" sid="7512912334963013" type="System">
+                    <param id="0" name="Seconds">1.0</param>
+                </action>
             </actions>
         </event-block>
         <event-block sid="5681258324590738">
@@ -112,6 +128,7 @@
             </conditions>
             <actions>
                 <action id="-9" name="Destroy" sid="678651199538756" type="Enemy" />
+                <action id="-9" name="Destroy" sid="6441735308702475" type="EnemySkin" />
             </actions>
         </event-block>
         <event-block sid="9641608433758371">
@@ -122,30 +139,111 @@
                 <action behavior="Sine" id="3" name="Set movement" sid="5125056773533891" type="Platform">
                     <param id="0" name="Movement">0</param>
                 </action>
-                <action behavior="Sine" id="4" name="Set wave" sid="783399742496738" type="MovingWall">
+                <action behavior="Sine" id="4" name="Set wave" sid="783399742496738" type="Platform2">
                     <param id="0" name="Wave">0</param>
+                </action>
+                <action behavior="Sine" id="2" name="Set magnitude" sid="947870020324974" type="Platform3">
+                    <param id="0" name="Magnitude">100</param>
+                </action>
+                <action behavior="Sine" id="2" name="Set magnitude" sid="7837936524858249" type="Platform4">
+                    <param id="0" name="Magnitude">100</param>
+                </action>
+                <action behavior="Sine" id="3" name="Set movement" sid="834614785846232" type="Platform5">
+                    <param id="0" name="Movement">1</param>
                 </action>
             </actions>
         </event-block>
-        <event-block sid="525655164510548">
+        <event-block sid="6607931880130183">
             <conditions>
-                <condition id="-6" name="Every X seconds" sid="4987750593132962" type="System">
-                    <param id="0" name="Interval (seconds)">0.1</param>
+                <condition id="0" name="On collision with another object" sid="6281137102835761" type="EnemyBullet">
+                    <param id="0" name="Object">Player</param>
                 </condition>
             </conditions>
             <actions>
-                <action behavior="Pathfinding" id="0" name="Find path" sid="5573833671330732" type="Enemy">
-                    <param id="0" name="X">Player.X</param>
-                    <param id="1" name="Y">Player.Y</param>
+                <action id="-12" name="Subtract from" sid="9441505763791327" type="Player">
+                    <param id="0" name="Instance variable">Health</param>
+                    <param id="1" name="Value">Enemy.Attack</param>
+                </action>
+                <action id="-9" name="Destroy" sid="5555161631889279" type="EnemyBullet" />
+            </actions>
+        </event-block>
+        <event-block sid="6846769837745725">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="3378391626447644" type="System" />
+            </conditions>
+            <actions>
+                <action behavior="Pin" id="0" name="Pin to object" sid="8076735890823569" type="PlayerSkin">
+                    <param id="0" name="Pin to">Player</param>
+                    <param id="1" name="Mode">1</param>
                 </action>
             </actions>
         </event-block>
-        <event-block sid="1623513851760336">
+        <event-block sid="2846203404841511">
             <conditions>
-                <condition behavior="Pathfinding" id="0" name="On path found" sid="5162359114387642" type="Enemy" />
+                <condition behavior="Pin" id="0" name="Is pinned" sid="1427108267580394" type="EnemySkin" />
             </conditions>
             <actions>
-                <action behavior="Pathfinding" id="1" name="Move along path" sid="1181927377089055" type="Enemy" />
+                <action behavior="Pin" id="0" name="Pin to object" sid="1289806675632643" type="EnemySkin">
+                    <param id="0" name="Pin to">Enemy</param>
+                    <param id="1" name="Mode">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="2836183937716667">
+            <conditions>
+                <condition id="0" name="On key pressed" sid="9835740996855339" type="Keyboard">
+                    <param id="0" name="Key">37 (Left arrow)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="7" name="Set mirrored" sid="8643672598452646" type="Player">
+                    <param id="0" name="State">0</param>
+                </action>
+                <action id="7" name="Set mirrored" sid="2865918422020902" type="PlayerSkin">
+                    <param id="0" name="State">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="6324006338750033" type="System">
+                    <param id="0" name="Variable">attack</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="7611706209487824">
+            <conditions>
+                <condition id="0" name="On key pressed" sid="1622554892356353" type="Keyboard">
+                    <param id="0" name="Key">39 (Right arrow)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="7" name="Set mirrored" sid="3485892888180097" type="Player">
+                    <param id="0" name="State">1</param>
+                </action>
+                <action id="7" name="Set mirrored" sid="8263326357279891" type="PlayerSkin">
+                    <param id="0" name="State">1</param>
+                </action>
+                <action id="-9" name="Set value" sid="1085798510941105" type="System">
+                    <param id="0" name="Variable">attack</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="1047105772551477">
+            <conditions>
+                <condition id="7" name="Is mirrored" sid="1156671069436689" type="Player" />
+            </conditions>
+            <actions>
+                <action id="7" name="Set mirrored" sid="118746288401049" type="Bullet">
+                    <param id="0" name="State">0</param>
+                </action>
+                <action id="7" name="Set mirrored" sid="9533390619158722" type="Punch">
+                    <param id="0" name="State">0</param>
+                </action>
+                <action behavior="Bullet" id="3" name="Set angle of motion" sid="3471518200028313" type="Bullet">
+                    <param id="0" name="Angle">180</param>
+                </action>
+                <action behavior="Bullet" id="3" name="Set angle of motion" sid="9104832300502743" type="Hadouken">
+                    <param id="0" name="Angle">180</param>
+                </action>
             </actions>
         </event-block>
     </events>

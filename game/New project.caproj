@@ -18,10 +18,11 @@
     <used-behaviors>
         <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
         <behavior author="Scirra" id="Fade" version="1">Fade</behavior>
-        <behavior author="Scirra" id="Pathfinding" version="1">Pathfinding</behavior>
+        <behavior author="Scirra" id="Pin" version="1">Pin</behavior>
         <behavior author="Scirra" id="Platform" version="1">Platform</behavior>
         <behavior author="Scirra" id="Sin" version="1">Sine</behavior>
         <behavior author="Scirra" id="bound" version="1">Bound to layout</behavior>
+        <behavior author="Scirra" id="custom" version="1">Custom Movement</behavior>
         <behavior author="Scirra" id="destroy" version="1">Destroy outside layout</behavior>
         <behavior author="Scirra" id="jumpthru" version="1">Jump-thru</behavior>
         <behavior author="Scirra" id="solid" version="1">Solid</behavior>
@@ -50,7 +51,7 @@
         <prop name="Use high-DPI display">Yes</prop>
     </configuration-settings>
     <object-folder expanded="1">
-        <object-type name="Sprite" sid="8892168445163376">
+        <object-type name="Ground" sid="8892168445163376">
             <plugin id="Sprite" />
             <behaviors>
                 <behavior-type name="Solid" sid="2213073185537805">
@@ -68,6 +69,7 @@
             <instance-variables>
                 <instance-variable comment="This is the health of the character." name="Health" sid="7217403337209295" type="number" />
                 <instance-variable name="Attack" sid="4788726201415013" type="number" />
+                <instance-variable name="Position" sid="3793750671030717" type="number" />
             </instance-variables>
             <behaviors>
                 <behavior-type name="Solid" sid="869160559261896">
@@ -87,6 +89,7 @@
                         <image-point name="Punch" x="1.312" y="0.476" />
                         <image-point name="Hadouken" x="1.368" y="0.468" />
                         <image-point name="Text" x="1.352" y="-0.06" />
+                        <image-point name="sword" x="1.188" y="0.224" />
                     </frame>
                 </animation>
             </animation-folder>
@@ -96,18 +99,24 @@
             <instance-variables>
                 <instance-variable name="Health" sid="3268802821021961" type="number" />
                 <instance-variable name="Attack" sid="2510932021442927" type="number" />
+                <instance-variable name="Position" sid="2453461988270416" type="number" />
             </instance-variables>
             <behaviors>
                 <behavior-type name="Solid" sid="7457600400848083">
                     <behavior id="solid" />
                 </behavior-type>
-                <behavior-type name="Pathfinding" sid="8654293745811593">
-                    <behavior id="Pathfinding" />
+                <behavior-type name="BoundToLayout" sid="6450145267399431">
+                    <behavior id="bound" />
+                </behavior-type>
+                <behavior-type name="Platform" sid="6944467294495195">
+                    <behavior id="Platform" />
                 </behavior-type>
             </behaviors>
             <animation-folder expanded="1">
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3108119223119599" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <image-point name="Bullets" x="-0.416" y="0.504" />
+                    </frame>
                 </animation>
             </animation-folder>
         </object-type>
@@ -157,6 +166,9 @@
                 <behavior-type name="Bullet" sid="1914796000840005">
                     <behavior id="Bullet" />
                 </behavior-type>
+                <behavior-type name="CustomMovement" sid="4207569783239123">
+                    <behavior id="custom" />
+                </behavior-type>
             </behaviors>
             <animation-folder expanded="1">
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4222582649306115" speed="5">
@@ -181,9 +193,6 @@
                 <behavior-type name="Jumpthru" sid="7735738687147187">
                     <behavior id="jumpthru" />
                 </behavior-type>
-                <behavior-type name="Solid" sid="2327618513358509">
-                    <behavior id="solid" />
-                </behavior-type>
                 <behavior-type name="Sine" sid="9036248368413583">
                     <behavior id="Sin" />
                 </behavior-type>
@@ -202,7 +211,7 @@
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="MovingWall" sid="9916967061345334">
+        <object-type name="Platform2" sid="9916967061345334">
             <plugin id="Sprite" />
             <behaviors>
                 <behavior-type name="Solid" sid="8838628566073956">
@@ -214,6 +223,132 @@
             </behaviors>
             <animation-folder expanded="1">
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4429476083933976" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="EnemyBullet" sid="8649698276214213">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Bullet" sid="3391331472802165">
+                    <behavior id="Bullet" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5428579610151744" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Platform3" sid="3827820386219234">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Solid" sid="2213837561224658">
+                    <behavior id="solid" />
+                </behavior-type>
+                <behavior-type name="Sine" sid="3261208244399126">
+                    <behavior id="Sin" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="2975449211154354" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Platform4" sid="2248557288825281">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Solid" sid="6557794485348743">
+                    <behavior id="solid" />
+                </behavior-type>
+                <behavior-type name="Sine" sid="5553284963118304">
+                    <behavior id="Sin" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3621150367915255" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Wall" sid="7213997020915179">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Solid" sid="158964084450683">
+                    <behavior id="solid" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9253281213805077" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Platform5" sid="6544191310488306">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Jumpthru" sid="6884612606321298">
+                    <behavior id="jumpthru" />
+                </behavior-type>
+                <behavior-type name="Sine" sid="709267829903479">
+                    <behavior id="Sin" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3972146949717721" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Punches" sid="7803490603246601">
+            <plugin id="Text" />
+            <behaviors>
+                <behavior-type name="Fade" sid="7837126973895045">
+                    <behavior id="Fade" />
+                </behavior-type>
+            </behaviors>
+        </object-type>
+        <object-type name="PlayerSkin" sid="9912192351194022">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Pin" sid="9458323113282126">
+                    <behavior id="Pin" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6343670457024063" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <image-point name="sword" x="0.884" y="0.404" />
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="EnemySkin" sid="347322631460154">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Pin" sid="7396129697093871">
+                    <behavior id="Pin" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1035725151471794" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Sword" sid="4610755018581043">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4560620137357115" speed="5">
+                    <frame duration="1" hotspotX="0.516" hotspotY="0.992" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Sprite" sid="5645914267242341">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4233843268892217" speed="5">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
                 </animation>
             </animation-folder>
