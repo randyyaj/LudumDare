@@ -18,6 +18,7 @@
     <used-behaviors>
         <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
         <behavior author="Scirra" id="Fade" version="1">Fade</behavior>
+        <behavior author="Scirra" id="Pathfinding" version="1">Pathfinding</behavior>
         <behavior author="Scirra" id="Pin" version="1">Pin</behavior>
         <behavior author="Scirra" id="Platform" version="1">Platform</behavior>
         <behavior author="Scirra" id="Sin" version="1">Sine</behavior>
@@ -99,16 +100,14 @@
             <instance-variables>
                 <instance-variable name="Health" sid="3268802821021961" type="number" />
                 <instance-variable name="Attack" sid="2510932021442927" type="number" />
-                <instance-variable name="Position" sid="2453461988270416" type="number" />
+                <instance-variable name="action" sid="2453461988270416" type="string" />
+                <instance-variable name="face" sid="2594477943459754" type="string" />
             </instance-variables>
             <behaviors>
-                <behavior-type name="Solid" sid="7457600400848083">
-                    <behavior id="solid" />
-                </behavior-type>
                 <behavior-type name="BoundToLayout" sid="6450145267399431">
                     <behavior id="bound" />
                 </behavior-type>
-                <behavior-type name="Platform" sid="6944467294495195">
+                <behavior-type name="Platform" sid="4861761222721509">
                     <behavior id="Platform" />
                 </behavior-type>
             </behaviors>
@@ -353,13 +352,144 @@
                 </animation>
             </animation-folder>
         </object-type>
+        <object-type name="edgemarker" sid="207515203578014">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3939448777039882" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="rightblock" sid="8447750348594637">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1182320676795628" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="testplayer" sid="3059635265690231">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="facing" sid="2622397733411737" type="string" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Platform" sid="3340067724762843">
+                    <behavior id="Platform" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="967962079731652" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="edge" sid="6641450110059755">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Solid" sid="2528976534858257">
+                    <behavior id="solid" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9115194573769878" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="groundtest" sid="6530943438989322">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Solid" sid="6750379229343188">
+                    <behavior id="solid" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1845323273217624" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="testmovement" sid="5740631850730327">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="CustomMovement" sid="9927193339613121">
+                    <behavior id="custom" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="8566095997329323" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="robot" sid="6777623690805061">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Solid" sid="2298893411829311">
+                    <behavior id="solid" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1192697330849398" speed="5">
+                    <frame duration="1" hotspotX="1.004" hotspotY="0.476" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="grounds" sid="4858852278887965">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Solid" sid="2228191895843134">
+                    <behavior id="solid" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3529743312316275" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Missle" sid="6343814455647278">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="BoundToLayout" sid="1403584766322777">
+                    <behavior id="bound" />
+                </behavior-type>
+                <behavior-type name="Pathfinding" sid="9120007038416332">
+                    <behavior id="Pathfinding" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5763755382572567" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="play" sid="8501514794257709">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Solid" sid="4747897642887891">
+                    <behavior id="solid" />
+                </behavior-type>
+                <behavior-type name="Platform" sid="885906531274309">
+                    <behavior id="Platform" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="8588451875501815" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
     </object-folder>
     <families />
     <layout-folder expanded="1">
         <layout>Layout 1.xml</layout>
+        <layout>Layout 2.xml</layout>
     </layout-folder>
     <event-folder expanded="1">
         <event-sheet>Event sheet 1.xml</event-sheet>
+        <event-sheet>Event sheet 2.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Keyboard" uid="4" />

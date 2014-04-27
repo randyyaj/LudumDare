@@ -109,7 +109,7 @@
                 </instance>
                 <instance type="Enemy" uid="2">
                     <properties>
-                        <initial-visibility>Invisible</initial-visibility>
+                        <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
                         <initial-frame>0</initial-frame>
                         <collisions>Enabled</collisions>
@@ -117,14 +117,10 @@
                     <instance-variables>
                         <Health>20</Health>
                         <Attack>1</Attack>
-                        <Position>0</Position>
+                        <action>&quot;right&quot;</action>
+                        <face>&quot;right&quot;</face>
                     </instance-variables>
                     <behavior-instances>
-                        <behavior-instance type="Solid">
-                            <properties>
-                                <initial-state>Enabled</initial-state>
-                            </properties>
-                        </behavior-instance>
                         <behavior-instance type="BoundToLayout">
                             <properties>
                                 <bound-by>Edge</bound-by>
@@ -138,7 +134,7 @@
                                 <jump-strength>650</jump-strength>
                                 <gravity>1500</gravity>
                                 <max-fall-speed>1000</max-fall-speed>
-                                <default-controls>Yes</default-controls>
+                                <default-controls>No</default-controls>
                                 <initial-state>Enabled</initial-state>
                             </properties>
                         </behavior-instance>
@@ -146,8 +142,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>1005</x>
-                        <y>644</y>
+                        <x>995</x>
+                        <y>654</y>
                         <z>0</z>
                         <width>46</width>
                         <height>82</height>
@@ -692,8 +688,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>1005</x>
-                        <y>642</y>
+                        <x>995</x>
+                        <y>658</y>
                         <z>0</z>
                         <width>52</width>
                         <height>70</height>
@@ -726,7 +722,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="Sprite" uid="21">
+                <instance type="edgemarker" uid="22">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -736,11 +732,33 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>764</x>
-                        <y>1083</y>
+                        <x>855</x>
+                        <y>583</y>
                         <z>0</z>
-                        <width>250</width>
-                        <height>250</height>
+                        <width>34</width>
+                        <height>222</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="edgemarker" uid="21">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>1126</x>
+                        <y>583</y>
+                        <z>0</z>
+                        <width>34</width>
+                        <height>222</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
