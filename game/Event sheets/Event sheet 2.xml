@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Event sheet 2</name>
+    <events>
+        <event-block sid="5676205440882857">
+            <conditions>
+                <condition id="-7" name="Compare instance variable" sid="7027809195381916" type="testplayer">
+                    <param id="0" name="Instance variable">facing</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">&quot;right&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Platform" id="7" name="Simulate control" sid="1985452382398654" type="testplayer">
+                    <param id="0" name="Control">1</param>
+                </action>
+                <action id="7" name="Set mirrored" sid="7833196087027831" type="testplayer">
+                    <param id="0" name="State">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="4230359680267591">
+            <conditions>
+                <condition id="-7" name="Compare instance variable" sid="3253031201190961" type="testplayer">
+                    <param id="0" name="Instance variable">facing</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">&quot;left&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Platform" id="7" name="Simulate control" sid="8757755740554794" type="testplayer">
+                    <param id="0" name="Control">0</param>
+                </action>
+                <action id="7" name="Set mirrored" sid="4262855947728692" type="testplayer">
+                    <param id="0" name="State">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="188935727720762">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="6564173574321704" type="testplayer">
+                    <param id="0" name="Object">edge</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="4128411359249577">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="3362277898204828" type="testplayer">
+                            <param id="0" name="Instance variable">facing</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;right&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="1238032580710278" type="testplayer">
+                            <param id="0" name="Instance variable">facing</param>
+                            <param id="1" name="Value">&quot;left&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="9183374055169535">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="29590138597269" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="4111511420344461" type="testplayer">
+                            <param id="0" name="Instance variable">facing</param>
+                            <param id="1" name="Value">&quot;right&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="6736492325089034">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="9415440955368907" type="System">
+                    <param id="0" name="Interval (seconds)">0.1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Pathfinding" id="0" name="Find path" sid="224317378231067" type="Missle">
+                    <param id="0" name="X">play.X</param>
+                    <param id="1" name="Y">play.Y</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="1407128984591753">
+            <conditions>
+                <condition behavior="Pathfinding" id="0" name="On path found" sid="8299795831943125" type="Missle" />
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="2448381112454395" type="robot">
+                    <param id="0" name="Object">Missle</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action behavior="Pathfinding" id="1" name="Move along path" sid="2444963341291634" type="Missle" />
+            </actions>
+        </event-block>
+        <event-block sid="9394478237897589">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="9394510582027915" type="play">
+                    <param id="0" name="Object">Missle</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="6051046501701472" type="play" />
+                <action id="-9" name="Destroy" sid="2034432633760562" type="Missle" />
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>
