@@ -9,6 +9,6 @@ All animations/code is free of use.
 
 Contributors:
 
-Kao Thao
-Kong Vang
-Randy Yang
+Kao Thao,
+Kong Vang,
+Randy Yang,
